@@ -15,7 +15,7 @@ export type RouletteLotteryType<T> = {
   borderStyle?: StyleProp<ViewStyle>;
   data: T[];
   renderItem: (data: T, index: number) => React.ReactElement | null;
-  onEndSpinCallBack?: (finish: boolean) => void;
+  onEndSpinCallBack?: (finish: boolean, idx: number) => void;
   spinTime?: number;
   spinDuration?: number;
   offsetEnable?: boolean;
@@ -95,7 +95,7 @@ function RouletteLotteryRef<T>(
         ...finalAnimate,
       })
       .then((endState: { finished: boolean }) => {
-        onEndSpinCallBack && onEndSpinCallBack(endState?.finished);
+        onEndSpinCallBack && onEndSpinCallBack(endState?.finished, idx);
       });
   };
 
